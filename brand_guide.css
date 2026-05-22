@@ -242,10 +242,10 @@ h1 {
   text-transform: uppercase;
 }
 
-/* Submarks */
+/* Submarks — 2×2 grid so the four marks resize cleanly together */
 .submarks {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
 .submarks img {
@@ -604,6 +604,32 @@ body.lightbox-open { overflow: hidden; }
   box-shadow: 0 20px 80px rgba(0, 0, 0, .55);
 }
 
+/* Video mode — wider frame, no inner padding/background, no scroll */
+.lightbox-block--video {
+  max-width: min(1200px, 100%);
+  max-height: none;
+  overflow: visible;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+.video-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 80vh;
+  background: #000;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, .55);
+}
+.video-wrap iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* Space zoning */
 .zones { display: grid; gap: 0; }
 .zone {
@@ -688,4 +714,14 @@ body.lightbox-open { overflow: hidden; }
   .span-2-rows { grid-row: auto; }
   .span-2-cols, .span-3-cols { grid-column: auto; }
   h1 { letter-spacing: .16em; }
+
+  /* Shopping list CTA stacks vertically on narrow viewports to match
+     the other CTA panels: icon → title → subtitle → meta. */
+  .cta-button--wide {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .cta-button--wide .cta-title { margin-top: 0; }
+  .cta-button--wide .cta-meta { margin-left: 0; }
 }

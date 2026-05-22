@@ -252,11 +252,10 @@
         </template>
       </article>
 
-      <!-- Row 4, Col 3 — Video walkthrough (external link, opens in new tab) -->
+      <!-- Row 4, Col 3 — Walkthrough video (opens lightbox with YouTube embed) -->
       <article class="panel panel-cta">
         <p class="kicker">Walkthrough Video</p>
-        <!-- Swap the href for the real video URL once it's published. -->
-        <a class="cta-button" href="https://example.com/foundry-walkthrough" target="_blank" rel="noopener noreferrer">
+        <button class="cta-button" type="button" data-gallery="walkthrough" aria-haspopup="dialog">
           <span class="cta-icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false">
               <circle cx="12" cy="12" r="9"/>
@@ -264,8 +263,19 @@
             </svg>
           </span>
           <span class="cta-title">Watch Walkthrough</span>
-          <span class="cta-meta">Opens in a new tab →</span>
-        </a>
+          <span class="cta-meta" data-gallery-count>Open video →</span>
+        </button>
+        <!-- Placeholder video — swap the iframe src for the real YouTube embed URL. -->
+        <template id="gallery-walkthrough">
+          <div class="video-wrap">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/jNQXAC9IVRw?rel=0"
+              title="The Foundry walkthrough video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen></iframe>
+          </div>
+        </template>
       </article>
 
       <!-- Row 5 — Shopping list (full width, opens table lightbox) -->
@@ -422,6 +432,10 @@
             : ' images — open carousel →');
           return;
         }
+        if (tpl.content.querySelector('iframe')) {
+          meta.textContent = 'Open video →';
+          return;
+        }
         const linkCount = tpl.content.querySelectorAll('a[href]').length;
         if (linkCount) {
           meta.textContent = linkCount + (linkCount === 1
@@ -470,6 +484,8 @@
             setMode('carousel');
             renderSlide();
           } else if (tpl.content.children.length) {
+            const hasVideo = tpl.content.querySelector('iframe') !== null;
+            blockEl.classList.toggle('lightbox-block--video', hasVideo);
             blockEl.appendChild(tpl.content.cloneNode(true));
             setMode('block');
             blockEl.scrollTop = 0;
@@ -490,6 +506,7 @@
         document.body.classList.remove('lightbox-open');
         imgEl.removeAttribute('src');
         blockEl.replaceChildren();
+        blockEl.classList.remove('lightbox-block--video');
         if (returnFocus) returnFocus.focus();
       }
 
