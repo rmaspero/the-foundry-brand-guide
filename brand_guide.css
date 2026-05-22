@@ -23,6 +23,12 @@
 
 * { box-sizing: border-box; }
 
+/* Ensure the HTML `hidden` attribute always wins over component-level
+   `display: flex/grid/block` rules (e.g. .lightbox-figure has display:flex,
+   which would otherwise mask hidden and let stale slide content show
+   through when the lightbox is in block/video/empty mode). */
+[hidden] { display: none !important; }
+
 body {
   margin: 0;
   background:

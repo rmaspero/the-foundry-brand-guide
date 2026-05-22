@@ -455,6 +455,13 @@
         counterEl.hidden = mode !== 'carousel' || slides.length < 2;
         blockEl.hidden = mode !== 'block';
         emptyEl.hidden = mode !== 'empty';
+        // Belt-and-braces: clear slide data when leaving carousel mode so a
+        // stale image/caption can't leak through if `hidden` ever fails.
+        if (mode !== 'carousel') {
+          imgEl.removeAttribute('src');
+          imgEl.alt = '';
+          captionEl.textContent = '';
+        }
       }
 
       function renderSlide() {
@@ -505,6 +512,8 @@
         lightbox.hidden = true;
         document.body.classList.remove('lightbox-open');
         imgEl.removeAttribute('src');
+        imgEl.alt = '';
+        captionEl.textContent = '';
         blockEl.replaceChildren();
         blockEl.classList.remove('lightbox-block--video');
         if (returnFocus) returnFocus.focus();
