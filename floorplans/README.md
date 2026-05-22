@@ -1,7 +1,7 @@
 # Layouts & Floor Plans
 
 Drop floor plans / layout drawings in here, then list each one inside
-`<template id="gallery-floorplans">` in `brand_guide.html`.
+`<template id="gallery-floorplans">` in `index.html`.
 
 Example:
 

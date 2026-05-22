@@ -2,7 +2,7 @@
 
 Drop concept renders for the Foundry spaces in here, then add a matching
 `<img>` for each one inside the `<template id="gallery-mockups">` block in
-`brand_guide.html`. The lightbox carousel reads them in order.
+`index.html`. The lightbox carousel reads them in order.
 
 Example:
 
