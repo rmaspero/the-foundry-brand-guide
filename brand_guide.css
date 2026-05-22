@@ -399,6 +399,86 @@ h1 {
   font-weight: 700;
 }
 
+/* Wide CTA — horizontal layout for the full-width Shopping List panel */
+.cta-button--wide {
+  flex-direction: row;
+  align-items: center;
+  gap: 28px;
+}
+.cta-button--wide .cta-icon { flex: 0 0 auto; }
+.cta-button--wide .cta-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+.cta-button--wide .cta-title { margin-top: 0; }
+.cta-subtitle {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+  font-weight: 400;
+  max-width: 64ch;
+}
+.cta-button--wide .cta-meta { flex: 0 0 auto; margin-left: auto; }
+
+/* Shopping-list table (rendered inside the lightbox block area) */
+.shopping-list {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-body);
+  color: var(--off-white);
+}
+.shopping-list td,
+.shopping-list th {
+  text-align: left;
+  font-weight: 400;
+  padding: 11px 18px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: baseline;
+}
+.shopping-list tr:hover td { background: rgba(255, 255, 255, .02); }
+.shopping-list .shopping-group th {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--furnace-orange);
+  font-weight: 700;
+  padding-top: 28px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(214, 90, 43, .35);
+  background: transparent;
+}
+.shopping-list .shopping-group:first-child th { padding-top: 4px; }
+.shopping-list a {
+  color: var(--off-white);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, .18);
+  transition: color .15s ease, border-color .15s ease;
+}
+.shopping-list a:hover,
+.shopping-list a:focus-visible {
+  color: var(--furnace-orange);
+  border-bottom-color: var(--furnace-orange);
+  outline: none;
+}
+.shopping-list .merchant {
+  width: 1%;
+  white-space: nowrap;
+  color: var(--muted);
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.shopping-todo {
+  color: var(--muted);
+  font-style: italic;
+}
+
 /* Lightbox */
 body.lightbox-open { overflow: hidden; }
 .lightbox {
@@ -511,6 +591,17 @@ body.lightbox-open { overflow: hidden; }
   font-size: 12px;
   text-align: center;
   max-width: 32ch;
+}
+.lightbox-block {
+  grid-area: stage;
+  width: 100%;
+  max-width: min(960px, 100%);
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 4px 8px;
+  background: rgba(20, 20, 20, .55);
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 80px rgba(0, 0, 0, .55);
 }
 
 /* Space zoning */
